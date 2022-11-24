@@ -32,4 +32,8 @@ public class StringBar extends Bar {
             if (isHappyHour()) observer.happyHourStarted(this);
             else observer.happyHourEnded(this);
     }
+
+    public void order(StringDrink drink, StringRecipe recipe) {
+        recipe.mix(drink);
+    }
 }

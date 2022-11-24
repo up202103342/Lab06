@@ -5,13 +5,15 @@ public class HumanClient implements Client {
     private StringRecipe recipe;
     private StringBar bar;
     private boolean hh;
-    public HumanClient() { hh = false; }
-    public void happyHourStarted(Bar bar) { hh = true; }
-    public void happyHourEnded(Bar bar) { hh = false; }
+    private OrderingStrategy strategy;
+    public HumanClient(OrderingStrategy strategy) { hh = false; this.strategy = strategy; }
+    public void happyHourStarted(Bar bar) { hh = true; strategy.happyHourStarted(bar); }
+    public void happyHourEnded(Bar bar) { hh = false; strategy.happyHourEnded(bar); }
     public void wants(StringDrink drink, StringRecipe recipe, StringBar bar){
         this.drink = drink;
         this.recipe = recipe;
         this.bar = bar;
+        strategy.wants(drink, recipe, bar);
     }
 
 }
